@@ -11,7 +11,6 @@ import CoreLocation
 
 class NetworkManager: NSObject {
 
-
     let LOCATION = "location="
     let RADIUS = "radius="
     var KEY = "key="
@@ -19,17 +18,19 @@ class NetworkManager: NSObject {
     
     public static let sharedInstance = NetworkManager()
     
+    override init() {
+        super.init()
+        self.getKey()
+    }
+    
     
     func getKey() {
-        var path = Bundle.main.path(forResource: "Utilities", ofType: "plist")
-        
-        var keyDetails = Dictionary()
-        var google = NSDictionary(contentsOfFile: path!)
-        if let apiKey = google["places-key"] as? String {
+        let path = Bundle.main.path(forResource: "Utilities", ofType: "plist")
+        let keyDetails = NSDictionary(contentsOfFile: path!)
+        if let apiKey = keyDetails!["KEY"] as? String {
             self.KEY = "\(self.KEY)\(apiKey)"
         } else {
-            // TODO: Exception handling
-            println("Exception: places-key is not set in google.plist")
+            print("Exception: places-key is not set in Utilities")
         }
     }
     

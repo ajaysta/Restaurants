@@ -44,7 +44,11 @@ extension ViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let query = searchBar.text, !query.isEmpty {
             self.currentLocation = locationManager.location!
-            networkManager.fetchRestaurants(location: self.currentLocation.coordinate, radius: 1000, query:query) { (restaurants, errorDescription) in
+            let path = Bundle.main.path(forResource: "Utilities", ofType: "plist")
+            let keyDetails = NSDictionary(contentsOfFile: path!)
+            let radius = keyDetails!["Radius"] as? Int
+
+            networkManager.fetchRestaurants(location: self.currentLocation.coordinate, radius: radius!, query:query) { (restaurants, errorDescription) in
                 if errorDescription != nil {
                     // Display error to user
                 }

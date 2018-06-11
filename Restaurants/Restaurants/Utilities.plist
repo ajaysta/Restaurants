@@ -3,6 +3,8 @@
 <plist version="1.0">
 <dict>
 	<key>KEY</key>
-	<string>key=AIzaSyCWy53K0I7yJddBDfqWC9dr1DrszNgEuW8</string>
+	<string>AIzaSyCWy53K0I7yJddBDfqWC9dr1DrszNgEuW8</string>
+	<key>Radius</key>
+	<integer>1000</integer>
 </dict>
 </plist>
